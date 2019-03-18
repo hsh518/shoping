@@ -15,6 +15,18 @@
                     <span v-if="active === 5" class="query-icon"></span>
                 </li>
             </ul>
+            <!--筛选弹出框-->
+            <div class="query-dialog padding" v-show="queryPopupShow">
+                <p>请输入积分值</p>
+                <div class="input-box">
+                    <input/> -
+                    <input/>
+                </div>
+                <div class="button-box">
+                    <van-button type="default">默认按钮</van-button>
+                    <van-button type="danger">危险按钮</van-button>
+                </div>
+            </div>
         </div>
         <!--列表-->
         <van-list v-model="loading" @load="getList">
@@ -22,7 +34,7 @@
             <div @click="toDetail" class="list-item" v-for="(item, index) in list" :key="index">{{ item }}</div>
         </van-list>
         <!--弹层 选择筛选时展示-->
-        <van-popup v-model="queryPopupShow"></van-popup>
+        <van-popup v-model="queryPopupShow" :closeOnClickOverlay="false"></van-popup>
     </div>
 </template>
 
@@ -111,15 +123,20 @@
     }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .home{
     .padding{padding: 0 0.24rem;}
     .top-flex-box{position: fixed;width: 100%;top:0;left: 0;z-index: 3000;background-color: white;}
     .list-top-box{height: 2.02rem;}
     .shop-search{margin-top: 0.24rem;padding: 0.12rem 0.24rem;height: 0.6rem;line-height: 0.6rem;border-top: 1px solid #ededed;}
     .tabs{display: flex;height: 0.88rem;line-height: 0.88rem;border-bottom: 1px solid #eff3f6;border-top: 1px solid #eff3f6;
-        .tab-item{width: 20%;width: border-box;font-size: 0.25rem;text-align: center;}
+        .tab-item{width: 20%;width: border-box;font-size: 0.25rem;}
         .activeTab{color: #ec4125}
+    }
+    .query-dialog{
+        .button-box{
+            .van-button{width: 50%;box-sizing: border-box;}
+        }
     }
     .list-item{height: 0.5rem;text-align: center;}
 }
