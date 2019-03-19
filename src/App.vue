@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view/>
+    <keep-alive>
+      <router-view v-if="this.$route.meta.keepAlive"/>
+    </keep-alive>
+      <router-view v-if="!this.$route.meta.keepAlive"/>
   </div>
 </template>
 
@@ -19,6 +22,7 @@ export default {
     padding: 0;
   }
   a{text-decoration: none;}
+  input{outline: none;}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

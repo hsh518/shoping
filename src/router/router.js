@@ -9,15 +9,20 @@ export default new Router({
     routes:[
         {
             path: '/',
-            name: 'Home',
-            meta: {title: '全部商品'},
-            component: Home
+            redirect: {name: 'Home'},
         },
         {
-            path: '/detail',
+            path: '/shop/home',
+            name: 'Home',
+            meta: {title: '全部商品', keepAlive: true},
+            component: Home,
+        },
+        {
+            path: '/shop/detail',
             name: 'Detail',
-            meta: {title: '商品详情'},
+            meta: {title: '商品详情', keepAlive: false},
             component: Detail
         }
-    ]
+    ],
+
 })
